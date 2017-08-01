@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.jr.poliv.flashcards.R;
@@ -33,10 +34,13 @@ public class AddQuestionDialogFragment extends DialogFragment {
                 EditText question = (EditText) ((AlertDialog) dialog).findViewById(R.id.edQuestion);
                 EditText answer = (EditText) ((AlertDialog) dialog).findViewById(R.id.edAnswer);
 
-                Intent intent = new Intent(getContext(), AddQuestionService.class);
-                intent.putExtra(AddQuestionService.QUESTION, question.getText());
-                intent.putExtra(AddQuestionService.ANSWER, answer.getText());
-                getActivity().startService(intent);
+
+                if( !(question.getText().equals("") || question.getText() == null) && !(answer.equals("")) || answer.getText() == null) {
+                    Intent intent = new Intent(getContext(), AddQuestionService.class);
+                    intent.putExtra(AddQuestionService.QUESTION, question.getText().toString());
+                    intent.putExtra(AddQuestionService.ANSWER, answer.getText().toString());
+                    getActivity().startService(intent);
+                }
 
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

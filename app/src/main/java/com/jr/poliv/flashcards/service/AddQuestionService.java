@@ -1,8 +1,12 @@
 package com.jr.poliv.flashcards.service;
 
 import android.app.IntentService;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.util.Log;
+
+import com.jr.poliv.flashcards.data.FlashCardContract;
 
 /**
  * Created by poliv on 7/31/2017.
@@ -23,17 +27,23 @@ public class AddQuestionService extends IntentService {
     }
 
     public AddQuestionService(){
+
         super("AddQuestionService");
     }
 
 
     @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
+    protected void onHandleIntent(Intent intent) {
 
-        String question = intent.getExtras().getString(QUESTION);
-        String answer = intent.getExtras().getString(ANSWER);
+        String question = intent.getStringExtra(QUESTION);
+        String answer = intent.getStringExtra(ANSWER);
 
-        //TODO: insert code to add these to databse
+        ContentValues values = new ContentValues();
+
+        values.put(FlashCardContract.FlashCardEntry.COLUMN_QUESTION, question);
+        values.put(FlashCardContract.FlashCardEntry.COLUMN_ANSWER, answer);
+
+        getContentResolver().insert(FlashCardContract.FlashCardEntry.CONTENT_URI, values);
 
     }
 }
