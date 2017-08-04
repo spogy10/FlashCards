@@ -1,6 +1,8 @@
 package com.jr.poliv.flashcards;
 
 import android.app.LoaderManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements FlashCardCursorAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //showNotification();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,8 +48,6 @@ public class MainActivity extends AppCompatActivity implements FlashCardCursorAd
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(lm);
-        //RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        //recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setHasFixedSize(true);
         adapter = new FlashCardCursorAdapter(this, null);
         recyclerView.setAdapter(adapter);
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements FlashCardCursorAd
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, NotificationSettings.class);
+            startActivity(intent);
             return true;
         }
 
@@ -98,5 +101,17 @@ public class MainActivity extends AppCompatActivity implements FlashCardCursorAd
     public void onLoaderReset(Loader<Cursor> loader) {
         adapter.swapCursor(null);
         loader.cancelLoad();
+    }
+
+
+
+    void showNotification(){
+        Notification.Builder notification = new Notification.Builder(this).setSmallIcon(R.mipmap.ic_launcher_round)
+                .setContentTitle(getString(R.string.app_name))
+                .setContentText("Remember to study!!!");
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+       // notificationManager.notify(1, notification.build());
+
     }
 }

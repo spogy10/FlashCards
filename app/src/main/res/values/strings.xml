@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">Flash Cards</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Notification Settings</string>
     <string name="question_editText_hint">Question</string>
     <string name="answer_editText_hint">Answer</string>
+    <string name="title_activity_notification_settings">NotificationSettings</string>
+    <string name="file_name">Notification Settings</string>
+
+    <string-array name="frequency">
+        <item>Hour</item>
+        <item>10 Hours</item>
+        <item>Day</item>
+    </string-array>
 </resources>
