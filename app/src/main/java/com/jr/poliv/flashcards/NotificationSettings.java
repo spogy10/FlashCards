@@ -5,29 +5,24 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 
 import com.jr.poliv.flashcards.service.NotificationJobService;
 
 
-public class NotificationSettings extends AppCompatActivity { //TODO: ADD CODE TO CREATE JOB
+public class NotificationSettings extends AppCompatActivity {
 
     private Switch notificationSwitch;
     private Spinner frequencySpinner;
-    private Button button;
     private SharedPref shared;
 
 
@@ -37,7 +32,7 @@ public class NotificationSettings extends AppCompatActivity { //TODO: ADD CODE T
         setContentView(R.layout.activity_notification_settings);
         notificationSwitch = (Switch) findViewById(R.id.notificationSwitch);
         frequencySpinner = (Spinner) findViewById(R.id.frequency);
-        button = (Button) findViewById(R.id.save);
+        Button button = (Button) findViewById(R.id.save);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -49,6 +44,7 @@ public class NotificationSettings extends AppCompatActivity { //TODO: ADD CODE T
                         .setAction("Action", null).show();
             }
         });
+        assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         shared = new SharedPref();
         notificationSwitch.setChecked(shared.isNotification());

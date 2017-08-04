@@ -6,9 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.widget.EditText;
-
 import com.jr.poliv.flashcards.R;
 import com.jr.poliv.flashcards.service.AddQuestionService;
 
@@ -30,12 +28,11 @@ public class AddQuestionDialogFragment extends DialogFragment {
         builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //TODO: get text from edit texts and call service to add question to database
                 EditText question = (EditText) ((AlertDialog) dialog).findViewById(R.id.edQuestion);
                 EditText answer = (EditText) ((AlertDialog) dialog).findViewById(R.id.edAnswer);
 
 
-                if( !(question.getText().equals("") || question.getText() == null) && !(answer.equals("")) || answer.getText() == null) {
+                if( !(question.getText().toString().equals("") || question.getText() == null) && !(answer.getText().toString().equals("")) || answer.getText() == null) {
                     Intent intent = new Intent(getContext(), AddQuestionService.class);
                     intent.putExtra(AddQuestionService.QUESTION, question.getText().toString());
                     intent.putExtra(AddQuestionService.ANSWER, answer.getText().toString());

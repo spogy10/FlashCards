@@ -1,8 +1,6 @@
 package com.jr.poliv.flashcards;
 
 import android.app.LoaderManager;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -10,14 +8,12 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.jr.poliv.flashcards.data.FlashCardContract;
 import com.jr.poliv.flashcards.dialog.AddQuestionDialogFragment;
 
@@ -30,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements FlashCardCursorAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //showNotification();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -101,17 +96,5 @@ public class MainActivity extends AppCompatActivity implements FlashCardCursorAd
     public void onLoaderReset(Loader<Cursor> loader) {
         adapter.swapCursor(null);
         loader.cancelLoad();
-    }
-
-
-
-    void showNotification(){
-        Notification.Builder notification = new Notification.Builder(this).setSmallIcon(R.mipmap.ic_launcher_round)
-                .setContentTitle(getString(R.string.app_name))
-                .setContentText("Remember to study!!!");
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-       // notificationManager.notify(1, notification.build());
-
     }
 }

@@ -3,9 +3,6 @@ package com.jr.poliv.flashcards.service;
 import android.app.IntentService;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.util.Log;
-
 import com.jr.poliv.flashcards.data.FlashCardContract;
 
 /**
@@ -21,6 +18,7 @@ public class AddQuestionService extends IntentService {
 
     public static final String QUESTION = "QUESTION";
     public static final String ANSWER = "ANSWER";
+
     public AddQuestionService(String name) {
 
         super(name);

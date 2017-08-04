@@ -2,14 +2,8 @@ package com.jr.poliv.flashcards.service;
 
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.job.JobInfo;
 import android.app.job.JobParameters;
-import android.app.job.JobScheduler;
 import android.app.job.JobService;
-import android.content.ComponentName;
-import android.content.Context;
-import android.os.Build;
-import android.os.PersistableBundle;
 import android.util.Log;
 
 import com.jr.poliv.flashcards.R;
